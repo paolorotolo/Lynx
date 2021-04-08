@@ -85,7 +85,7 @@ class TraceRenderer extends Renderer<Trace> {
     traceMessage = " " + level.getValue() + "  " + traceMessage;
     Spannable traceRepresentation = new SpannableString(traceMessage);
     int traceColor = getTraceColor();
-    traceRepresentation.setSpan(new BackgroundColorSpan(traceColor), 0, 3,
+    traceRepresentation.setSpan(new BackgroundColorSpan(traceColor), 0, level.getValue().length() +2,
         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     return traceRepresentation;
   }
