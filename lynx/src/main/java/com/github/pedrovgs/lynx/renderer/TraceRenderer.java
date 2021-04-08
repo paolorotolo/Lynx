@@ -80,6 +80,8 @@ class TraceRenderer extends Renderer<Trace> {
   }
 
   private Spannable getTraceVisualRepresentation(TraceLevel level, String traceMessage) {
+    traceMessage = traceMessage.substring((traceMessage.indexOf("||")+2)).trim();
+
     traceMessage = " " + level.getValue() + "  " + traceMessage;
     Spannable traceRepresentation = new SpannableString(traceMessage);
     int traceColor = getTraceColor();
