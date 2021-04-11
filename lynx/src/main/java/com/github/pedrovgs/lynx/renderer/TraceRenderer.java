@@ -21,6 +21,7 @@ import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.BackgroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,9 +85,14 @@ class TraceRenderer extends Renderer<Trace> {
 
     traceMessage = " " + level.getValue() + "  " + traceMessage;
     Spannable traceRepresentation = new SpannableString(traceMessage);
-    int traceColor = getTraceColor();
-    traceRepresentation.setSpan(new BackgroundColorSpan(traceColor), 0, level.getValue().length() +2,
-        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+    if (level != TraceLevel.VERBOSE) {
+      int traceColor = getTraceColor();
+      traceRepresentation.setSpan(new BackgroundColorSpan(traceColor), 0, level.getValue().length() +2,
+              Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+      return traceRepresentation;
+    }
+
     return traceRepresentation;
   }
 }
