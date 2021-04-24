@@ -83,14 +83,27 @@ class TraceRenderer extends Renderer<Trace> {
   private Spannable getTraceVisualRepresentation(TraceLevel level, String traceMessage) {
     traceMessage = traceMessage.substring((traceMessage.indexOf("||")+2)).trim();
 
-    traceMessage = " " + level.getValue() + "  " + traceMessage;
-    Spannable traceRepresentation = new SpannableString(traceMessage);
+
 
     if (level != TraceLevel.VERBOSE) {
-      int traceColor = getTraceColor();
-      traceRepresentation.setSpan(new BackgroundColorSpan(traceColor), 0, level.getValue().length() +2,
-              Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-      return traceRepresentation;
+      traceMessage = " " + "START" + "  " + traceMessage;
+      Spannable traceRepresentation = new SpannableString(traceMessage);
+
+      if (traceMessage.contains("JOURNEY START")) {
+
+        int traceColor = Color.RED;
+        traceRepresentation.setSpan(new BackgroundColorSpan(traceColor), 0, "START".length() + 2,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return traceRepresentation;
+      } else {
+        traceMessage = " " + level.getValue() + "  " + traceMessage;
+        Spannable traceRepresentation = new SpannableString(traceMessage);
+
+        int traceColor = getTraceColor();
+        traceRepresentation.setSpan(new BackgroundColorSpan(traceColor), 0, level.getValue().length() + 2,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return traceRepresentation;
+      }
     }
 
     return traceRepresentation;
