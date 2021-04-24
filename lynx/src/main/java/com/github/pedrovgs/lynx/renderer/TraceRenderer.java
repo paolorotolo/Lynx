@@ -86,16 +86,16 @@ class TraceRenderer extends Renderer<Trace> {
 
 
     if (level != TraceLevel.VERBOSE) {
-      traceMessage = " " + "START" + "  " + traceMessage;
-      Spannable traceRepresentation = new SpannableString(traceMessage);
-
       if (traceMessage.contains("JOURNEY START")) {
+        traceMessage = " " + "START" + "  " + traceMessage;
+        Spannable traceRepresentation = new SpannableString(traceMessage);
 
         int traceColor = Color.RED;
         traceRepresentation.setSpan(new BackgroundColorSpan(traceColor), 0, "START".length() + 2,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return traceRepresentation;
       } else {
+
         traceMessage = " " + level.getValue() + "  " + traceMessage;
         Spannable traceRepresentation = new SpannableString(traceMessage);
 
@@ -104,8 +104,12 @@ class TraceRenderer extends Renderer<Trace> {
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return traceRepresentation;
       }
+    } else {
+      traceMessage = " " + level.getValue() + "  " + traceMessage;
+      Spannable traceRepresentation = new SpannableString(traceMessage);
+
+      return traceRepresentation;
     }
 
-    return traceRepresentation;
   }
 }
