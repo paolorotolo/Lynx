@@ -90,7 +90,7 @@ class TraceRenderer extends Renderer<Trace> {
         traceMessage = " " + "START" + "  " + traceMessage;
         Spannable traceRepresentation = new SpannableString(traceMessage);
 
-        int traceColor = Color.RED;
+        int traceColor = Color.MAGENTA;
         traceRepresentation.setSpan(new BackgroundColorSpan(traceColor), 0, "START".length() + 2,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return traceRepresentation;
